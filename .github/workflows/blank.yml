@@ -1,0 +1,56 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Run Test Set
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+ # pull_request:
+   # branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  # Replace with your Orchestrator Values 
+  #ORCHESTRATOR_URL: "https://desktop-3spkt26/"
+  #ORCHESTRATOR_FOLDER: "Shared"
+  #Tenant: "Default"
+  #applicationId: "87fa8590-b0a6-4240-b02d-efbd4bf25b0d"
+  #applicationSecret: "$@hgfSf#~s20j7b#" 
+  ORCHESTRATOR_URL: "https://cloud.uipath.com/"
+  ORCHESTRATOR_FOLDER: "Shared"
+  Tenant: "UiPath"
+  applicationId: "ab86142f-590f-4161-a6a8-0536279b2870"
+  applicationSecret: "UHo3l1^@YBfxNLMS" 
+  applicationScope: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.Tasks OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users.Read"
+  accountName: "vishnnu"
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  print-details:
+    runs-on: windows-latest
+    steps:
+      - name: echo-default-env-variables
+        shell: pwsh
+        run: |
+          echo "Home: ${HOME}"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
+
+  Run-Test-Set:
+     needs: print-details
+     runs-on: windows-latest
+     steps:
+       - name: Run a Test Set
+         shell: pwsh
+         run: ${{github.workspace}}\scripts\\UiPathRunTest.ps1 ${{env.ORCHESTRATOR_URL}} ${{env.Tenant}} -applicationId ${{env.applicationId}} -applicationSecret  "${{env.applicationSecret}}" -applicationScope "${{env.applicationScope}}" -accountForApp "${{env.accountName}}" -testset "demo"
+    
