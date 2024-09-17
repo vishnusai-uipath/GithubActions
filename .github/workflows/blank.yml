@@ -55,6 +55,5 @@ jobs:
        - name: Run Test Set
          shell: cmd
          run: |
-           echo ${env.applicationSecret}
            ${{github.workspace}}\\scripts\\UiPathRunTest.ps1 ${{env.ORCHESTRATOR_URL}} ${{env.Tenant}} -applicationId ${{env.applicationId}} -applicationSecret  "${{env.applicationSecret}}" -applicationScope "${{env.applicationScope}}" -accountForApp "${{env.accountName}}" -testset "demo"
     
