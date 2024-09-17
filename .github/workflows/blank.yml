@@ -24,7 +24,7 @@ env:
   ORCHESTRATOR_FOLDER: "Shared"
   Tenant: "UiPath"
   applicationId: "ab86142f-590f-4161-a6a8-0536279b2870"
-  applicationSecret: EPrixQ5se)bxzqjf
+  applicationSecret: EPrixQ5se\()\)bxzqjf
   applicationScope: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.Tasks OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users.Read"
   accountName: "vishnnu"
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -54,5 +54,7 @@ jobs:
          uses: actions/checkout@v4
        - name: Run Test Set
          shell: pwsh
-         run: ${{github.workspace}}\\scripts\\UiPathRunTest.ps1 ${{env.ORCHESTRATOR_URL}} ${{env.Tenant}} -applicationId ${{env.applicationId}} -applicationSecret  "${{env.applicationSecret}}" -applicationScope "${{env.applicationScope}}" -accountForApp "${{env.accountName}}" -testset "demo"
+         run: |
+           echo ${{env.applicationSecret}}
+           ${{github.workspace}}\\scripts\\UiPathRunTest.ps1 ${{env.ORCHESTRATOR_URL}} ${{env.Tenant}} -applicationId ${{env.applicationId}} -applicationSecret  "${{env.applicationSecret}}" -applicationScope "${{env.applicationScope}}" -accountForApp "${{env.accountName}}" -testset "demo"
     
