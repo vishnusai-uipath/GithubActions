@@ -51,7 +51,7 @@ jobs:
      runs-on: windows-latest
      steps: 
        - name: check out
-         uses: actions/checkout@3
+         uses: actions/checkout@v4
        - name: Download CLI
          shell: powershell
          run: |
