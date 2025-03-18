@@ -55,7 +55,7 @@ jobs:
        - name: Download CLI
          shell: powershell
          run: |
-           ${{github.workspace}}\\scripts\\UiPathPack.ps1 ${{github.workspace}}\GithubActions\project.json -destination_folder ${{github.workspace}}\UiPath\Packages -$libraryOrchestratorUrl "https://cloud.uipath.com" -libraryOrchestratorTenant "UiPath" -libraryOrchestratorAccountForApp "vishnnu" -libraryOrchestratorApplicationId ${{env.applicationId}} -libraryOrchestratorApplicationSecret "${{env.applicationSecret}}" -libraryOrchestratorApplicationScope "${{env.applicationScope}}" -version 1.0.1 
+           ${{github.workspace}}\\scripts\\UiPathPack.ps1 ${{github.workspace}}\project.json -destination_folder ${{github.workspace}}\Packages -$libraryOrchestratorUrl "https://cloud.uipath.com" -libraryOrchestratorTenant "UiPath" -libraryOrchestratorAccountForApp "vishnnu" -libraryOrchestratorApplicationId ${{env.applicationId}} -libraryOrchestratorApplicationSecret "${{env.applicationSecret}}" -libraryOrchestratorApplicationScope "${{env.applicationScope}}" -version 1.0.1 
 
   Run-Test-Set:
      needs: Build-Nuget-Package
