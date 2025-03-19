@@ -154,7 +154,7 @@ if($uipathCliFilePath -ne ""){
         $cliVersion = $SpecificCLIVersion;
     }
     else{
-        $cliVersion = "24.12.9166.24491"; #CLI Version (Script was tested on this latest version at the time)
+        $cliVersion = "24.10.9050.17872"; #CLI Version (Script was tested on this latest version at the time)
     }
     #Verifying UiPath CLI installation
     $uipathCLI = "$scriptPath\uipathcli\$cliVersion\tools\uipcli.exe"
